@@ -7,6 +7,9 @@ return {
   dependencies = {
     'nvimtools/none-ls-extras.nvim',
     'jayp0521/mason-null-ls.nvim', -- ensure dependencies are installed
+    'neovim/nvim-lspconfig',
+    'nvim-telescope/telescope.nvim',
+    'mfussenegger/nvim-dap-python',
   },
   config = function()
     local null_ls = require 'null-ls'
@@ -55,19 +58,4 @@ return {
       end,
     }
   end,
-
-  'linux-cultist/venv-selector.nvim',
-  dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
-  opts = {
-    -- Your options go here
-    -- name = "venv",
-    -- auto_refresh = false
-  },
-  event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
-  keys = {
-    -- Keymap to open VenvSelector to pick a venv.
-    { '<leader>vs', '<cmd>VenvSelect<cr>' },
-    -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
-    { '<leader>vc', '<cmd>VenvSelectCached<cr>' },
-  },
 }
