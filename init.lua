@@ -102,7 +102,7 @@ vim.g.have_nerd_font = false
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -641,17 +641,9 @@ require('lazy').setup({
           },
         } or {},
         virtual_text = {
+          severity = { min = vim.diagnostic.severity.ERROR },
           source = 'if_many',
           spacing = 2,
-          format = function(diagnostic)
-            local diagnostic_message = {
-              [vim.diagnostic.severity.ERROR] = diagnostic.message,
-              [vim.diagnostic.severity.WARN] = diagnostic.message,
-              [vim.diagnostic.severity.INFO] = diagnostic.message,
-              [vim.diagnostic.severity.HINT] = diagnostic.message,
-            }
-            return diagnostic_message[diagnostic.severity]
-          end,
         },
       }
 
@@ -698,12 +690,12 @@ require('lazy').setup({
             },
           },
         },
-          basedpyright = {
-            settings = {
-              python = {
-                analysis = {
-                 typeCheckingMode = 'basic', -- 'off' to silence almost everything
-                 diagnosticSeverityOverrides = {
+        basedpyright = {
+          settings = {
+            python = {
+              analysis = {
+                typeCheckingMode = 'basic', -- 'off' to silence almost everything
+                diagnosticSeverityOverrides = {
                   -- re-level the noisiest categories
                   reportUnknownArgumentType = 'warning',
                   reportUnknownParameterType = 'warning',
@@ -868,7 +860,7 @@ require('lazy').setup({
       completion = {
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
-        documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
       },
 
       sources = {
@@ -1003,7 +995,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
