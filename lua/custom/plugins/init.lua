@@ -35,8 +35,4 @@ return {
       vim.keymap.set('n', '<leader>cc', ':Telescope bibtex<CR>', { desc = 'Insert citation' })
     end,
   },
-
-  { -- Copilot
-    'github/copilot.vim',
-  },
 }
